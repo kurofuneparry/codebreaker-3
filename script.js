@@ -17,7 +17,7 @@ menuDiv = document.getElementById('menu');
 //
 
 // Makes a dot
-function makeDot(color=colors[0], htmlClass='dot') {
+function makeDot(color=colors[0], htmlClass='') {
 	let dot = document.createElement('span');
     dot.style.backgroundColor = color;
 	dot.className = htmlClass;
@@ -58,7 +58,7 @@ function addColor(color) {
 	for (let i=0; i<guessDiv.children.length; i++) {
 	    if (guessDiv.children[i].className == 'empty') {
 	        guessDiv.children[i].style.backgroundColor = color;
-	        guessDiv.children[i].className = 'dot';
+	        guessDiv.children[i].className = '';
 	        break; // No 'empty' dot? Then nothing happens in this loop
 	    }
 	}
@@ -79,15 +79,15 @@ function allCodes(base=[[]]) {
 
 // Gives a response to a guess only when the code is complete
 function respond() {
-	let response = [];
+	let response = '';
 	for (let i=0; i<guessDiv.children.length; i++) {
 	    if (guessDiv.children[i].style.backgroundColor == secret[i]) {
-	        response.push('right');
-	    } else if (guessDiv.children[i].className == 'dot') {
-	        response.push('wrong');
+	        response.push('right ');
+	    } else if (guessDiv.children[i].className != 'empty') {
+	        response.push('wrong ');
 	    }
 	}
-    return response.join(' ');
+    return response;
 }
 
 // Submit a guess for a response
