@@ -144,4 +144,3 @@ menu.appendChild(button('Clear', clear));
 
 // The secret code the user will try to guess
 secret = random();
-
